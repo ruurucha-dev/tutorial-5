@@ -173,14 +173,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // Step 2: Display the names as a simple list
         // Hint: Create a <ul> and add <li> for each name 
+
+        let listItems = '';
         
         // Hint: You can use forEach on the names array, or join() method
         names.forEach((restaurant) => {
-            mappedList.innerHTML += `<ul class="name-list"> <li> ${restaurant.name} </div>`
-        }) 
+            listItems += `<li> ${restaurant}</li>`;              
+        })
+
+        mappedList.innerHTML = `<ul class="name-list">${listItems}</ul>`;
+
         // YOUR CODE HERE:
-        
-        
         console.log('Showed restaurant names using map');
     });
     
@@ -196,10 +199,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     findButton.addEventListener('click', (event) =>{
         // Step 1: Use find to get the restaurant with rating 4.8
-        // Hint: const bestRestaurant = restaurants.find((restaurant) =>{ return condition; })
+        const bestRestaurant = restaurants.find((restaurant) =>{ return restaurant.rating === 4.8; })
         // Hint: Check if restaurant.rating === 4.8
         
         // Step 2: Display the found restaurant
+        if (bestRestaurant) {
+            foundItem.innerHTML = `<div class="found-restaurant"> <div class="restaurant-name"> ${bestRestaurant.name} </div class="restaurant-name"> <div> Cuisine: ${bestRestaurant.cuisine} </div> <div> Rating: ${bestRestaurant.rating}</div> <div>${bestRestaurant.priceRange}</div> <div> Location: ${bestRestaurant.neighbourhood} </div>`;
+        } 
+        else {
+            foundItem.innerHTML = '<p class = "placeholder"> No restaurants found </p>';
+        }
         // Hint: Check if bestRestaurant exists first
         // Hint: Show the name, cuisine, and rating
         
